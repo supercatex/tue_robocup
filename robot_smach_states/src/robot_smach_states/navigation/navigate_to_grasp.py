@@ -34,10 +34,15 @@ class NavigateToGrasp(NavigateTo):
 
     def determine_offsets(self):
         # type: () -> Tuple[FrameStamped, float, float]
+        """
+        Computes entity pose, radius w.r.t. the entity and angle offset for MoveToGrasp
+
+        :return: tuple with mentioned information
+        :raises: RunTimeError
+        """
         arm = self.arm_designator.resolve()
         if not arm:
-            rospy.logerr("Could not resolve arm")
-            return None
+            raise RuntimeError("Could not resolve arm")
 
         angle_offset = -math.atan2(arm.base_offset.y(), arm.base_offset.x())
         radius = math.hypot(arm.base_offset.x(), arm.base_offset.y())
