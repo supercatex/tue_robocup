@@ -6,3 +6,4 @@ from learn_operator import LearnOperator
 from sound_source_localization import *
 from show_image import *
 from entity_from_operator_pose import GetFurnitureFromOperatorPose
+from show_openpose import *

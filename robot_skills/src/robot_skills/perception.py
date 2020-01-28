@@ -58,8 +58,8 @@ class Perception(RobotPart):
         self.rgb_sub = message_filters.Subscriber('{}/rgb/image_raw'.format(self._camera_base_ns), Image)
 
         self.ts = message_filters.ApproximateTimeSynchronizer([self.rgb_sub, self.depth_sub, self.depth_info_sub],
-                                                         queue_size=10,
-                                                         slop=10)
+                                                              queue_size=10,
+                                                              slop=10)
         self.ts.registerCallback(self._callback)
 
     def _callback(self, rgb, depth, depth_info):
@@ -309,4 +309,13 @@ class Perception(RobotPart):
             return None, None, None
 
     def detect_person_3d(self, rgb, depth, depth_info):
+        # type: (Image, Image, CameraInfo) -> list
+        """
+        Calls the people recognition 3d service with the provided images
+
+        :param rgb: RGB Image
+        :param depth: Depth Image
+        :param depth_info: depth camera info
+        :return: list with people_recognition_msgs/Person3D messages
+        """
         return self._person_recognition_3d_srv(image_rgb=rgb, image_depth=depth, camera_info_depth=depth_info).people
