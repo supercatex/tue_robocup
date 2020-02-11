@@ -107,7 +107,7 @@ class GlobalPlanner(RobotPart):
 
         :param position_constraint: (PositionConstraint)
         :return: list(PoseStamped). N.B.: If No path was found, this list is empty. If the planner service fails,
-        'None' is returned.
+            'None' is returned.
         """
 
         self._position_constraint = position_constraint
@@ -180,7 +180,7 @@ class Base(RobotPart):
 
         :param timeout: timeout in seconds
         :param log_failing_connections: (bool) whether to log errors if not connected. This is useful when checking
-        multiple robot parts in a loop
+            multiple robot parts in a loop
         :return: bool indicating whether all connections are connected
         """
         return self.global_planner.wait_for_connections(
@@ -278,6 +278,7 @@ class Base(RobotPart):
 
     def get_location(self):
         """ Returns a FrameStamped with the robot pose
+
         :return: FrameStamped with robot pose
         """
         return get_location(self.robot_name, self.tf_listener)

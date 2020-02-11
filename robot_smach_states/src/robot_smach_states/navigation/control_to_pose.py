@@ -29,6 +29,7 @@ def _clamp(abs_value, value):
 def _get_yaw_from_quaternion_msg(msg):
     """
     Returns the yaw angle from a rotation in quaternion representation (msg)
+
     :param msg: The quaternion msg
     :return: (float) Yaw angle in rad
     """
@@ -112,8 +113,9 @@ class ControlToPose(smach.State):
         Transfers the goal pose to robot frame
 
         :param goal_pose: (PoseStamped) Position the robot needs to go to
-        :return: (float) x position of goal in robot frame, (float) y position of goal in robot frame,
-        (float) yaw of goal in robot frame
+        :return: (float) x position of goal in robot frame,
+                 (float) y position of goal in robot frame,
+                 (float) yaw of goal in robot frame
         """
         goal_pose.header.stamp = rospy.Time.now()
         pose = self._tf_buffer.transform(goal_pose, self.robot.base_link_frame.lstrip("/"), rospy.Duration(1.0))
