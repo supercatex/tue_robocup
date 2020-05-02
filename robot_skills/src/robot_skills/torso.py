@@ -29,7 +29,7 @@ class Torso(RobotPart):
         self.upper_limit = self.default_configurations['upper_limit']
 
         # Init action client
-        self.ac_move_torso = self.create_simple_action_client('/' + self.robot_name + '/body/joint_trajectory_action',
+        self.ac_move_torso = self.create_simple_action_client('/' + self.robot_name + '/arm_trajectory_controller/follow_joint_trajectory',
                                                               control_msgs.msg.FollowJointTrajectoryAction)
 
         self.subscribe_hardware_status('spindle')

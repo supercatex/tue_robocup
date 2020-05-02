@@ -390,7 +390,7 @@ class Arm(RobotPart):
 
         # Init joint trajectory action server
         self._ac_joint_traj = self.create_simple_action_client(
-            "/" + robot_name + "/body/joint_trajectory_action", FollowJointTrajectoryAction)
+            "/" + robot_name + "/arm_trajectory_controller/follow_joint_trajectory", FollowJointTrajectoryAction)
 
         # Init grasp sensor subscriber
         self._grasp_sensor_state = GripperMeasurement(0.0)
